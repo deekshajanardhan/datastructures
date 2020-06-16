@@ -1,0 +1,120 @@
+#include<stdio.h>
+
+int stack[20],t;
+
+void push(char);
+
+int top();
+
+void pop();
+
+int main()
+
+{
+	
+char str[] = "((a+b)+(c+d))";
+
+	
+if (findDuplicateparenthesis(str))
+		
+printf("Duplicate Found ");
+	
+else
+		
+printf("No Duplicates Found ");
+
+
+return 0;
+
+}
+
+
+int findDuplicateparenthesis(char str[])
+
+{
+    
+int i=0;
+     
+while(str[i]!=NULL)
+	
+{
+		
+if (str[i] == ')')
+		
+{
+			
+char tp = top();
+			
+pop();
+            
+if (tp == '(')
+				
+return 1;
+            
+else
+			
+{
+				
+while (tp != '(')
+				
+{
+					
+tp = top();
+					
+pop();
+				
+}
+			
+}
+
+		
+}
+        
+else
+		
+push(str[i]);
+		
+i++;
+	
+}
+	
+return 0;
+
+}
+
+void push(char value)
+
+
+{
+	
+
+stack[++t] = value;
+
+
+}
+
+
+int top()
+
+
+{
+   
+ 
+return stack[t];
+
+
+}
+
+
+
+void pop()
+
+
+{
+
+
+t--;
+
+
+}
+

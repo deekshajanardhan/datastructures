@@ -1,0 +1,123 @@
+#include<stdio.h>
+
+#include<string.h>
+
+char stack[20],tp=-1;
+
+void pop();
+
+void push(char );
+
+int top();
+
+int empty(char *);
+
+int ssize(char *);
+
+int main()
+
+{
+
+char input[] = "}}{}{{";
+
+printf("%d",countMinReversals(input));
+
+return 0;
+
+}
+
+int countMinReversals(char input[])
+
+{
+	
+int len = strlen(input);
+    
+if (len%2)
+
+	return -1;
+
+for (int i=0; i<len; i++)
+
+	{
+		if (input[i]=='}' && !empty(stack))
+
+		{
+		    int x=top();
+		
+	if (x=='{')
+				pop();
+
+	else
+				
+push(input[i]);
+
+}
+		
+else
+			
+push(input[i]);
+	
+}
+
+	
+int unbal_len = ssize(stack);
+	
+int n = 0;
+	while (!empty(stack) && top() == '{')
+	
+{
+		
+pop();
+		n++;
+	
+}
+
+return (unbal_len/2 + n%2);
+
+}
+
+ int empty(char stack[])
+
+{
+  
+if(tp == -1) 
+
+return 1;
+  
+else
+     
+return 0;
+
+}
+
+void pop()
+
+{
+    
+tp--;
+
+}
+
+void push(char value) 
+
+{
+	
+stack[++tp] = value;
+
+}
+
+int ssize(char stack[])
+
+{
+
+    return tp+1;
+
+}
+
+int top()
+
+{
+    
+return stack[tp];
+
+}
